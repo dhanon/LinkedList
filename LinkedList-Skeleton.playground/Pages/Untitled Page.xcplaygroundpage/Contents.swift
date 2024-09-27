@@ -14,17 +14,42 @@ class LinkList {
     private var head: Node?
         
     func addFront(_ data: Int) {
+        let newNode = Node(data)
+        newNode.next = head
+        head = newNode
     }
 
     func getFirst() -> Int? {
-        return 0
+        if head == nil {
+            return nil
+        }
+        return head!.data
     }
 
     func addBack(_ data: Int) {
+        let newNode = Node(data)
+        
+        if head == nil {
+            head = newNode
+            return
+        }
+        
+        var node = head!
+        while(node.next != nil){
+            node = node.next!
+        }
+        node.next = newNode
     }
 
-    func getLast() -> Int? {
-        return nil
+    func getLast() -> Int?   {
+        if head == nil{
+            return nil
+        }
+        var node = head!
+        while(node.next != nil){
+            node = node.next!
+        }
+        return node.data
     }
 
     func insert(position: Int, data: Int) {
@@ -63,4 +88,16 @@ class LinkList {
 }
 
 let linkedList = LinkList()
+linkedList.addFront(3)
+linkedList.addFront(2)
+linkedList.addFront(1)
+linkedList.printLinkedList()
 
+linkedList.addFront(4)
+linkedList.printLinkedList()
+
+linkedList.addBack(5)
+linkedList.printLinkedList()
+
+linkedList.getFirst()
+linkedList.getLast()
